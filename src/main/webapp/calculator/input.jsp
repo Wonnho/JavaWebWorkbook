@@ -4,13 +4,14 @@
 <head>
 <title>calculator</title>
 </head>
-<form>
+
+<body>
+<form action="calcResult.jsp" method="post" >
 <input type="number" name="num1">
 <input type="number" name="num2">
 <button type="submit">SEND<button>
 </form>
 
-<body>
 </body>
 
 </html>
