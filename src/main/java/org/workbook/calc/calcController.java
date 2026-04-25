@@ -21,6 +21,8 @@ public class calcController extends HttpServlet {
         System.out.printf("num1: %s",num2);
         System.out.printf("sum: %s",num1+num2);
 
+        res.sendRedirect("/index");
+
 
 
     }
