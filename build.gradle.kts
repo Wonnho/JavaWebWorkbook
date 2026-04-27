@@ -1,6 +1,7 @@
 plugins {
     id("java")
-    id("org.gretty") version "4.1.1"
+
+    id("war")
 }
 
 group = "org.workbook"
@@ -13,7 +14,8 @@ repositories {
 dependencies {
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")
 
-    implementation("javax.servlet:jstl:1.2")}
+    implementation("javax.servlet:jstl:1.2")
+}
 
 
 tasks.test {
