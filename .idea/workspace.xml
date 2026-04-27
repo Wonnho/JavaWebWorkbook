@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="012d1bf2-71f9-46b8-bc30-4a35548e6935" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/todo/dto/TodoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/register.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/todo/service/TodoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/calc/SampleServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/calc/SampleServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/calc/TodoRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/calc/TodoRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/todo/TodoListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/todo/TodoListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/list.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,37 +44,45 @@
       <list>
         <option value="HTML File" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="3ChvlsgPq5MIIOs7X3Vrw6gaqhp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/wonnho/JavaWebWorkBook/JavaWorkBook/src/main/webapp/WEB-INF/calculator",
-    "onboarding.tips.debug.path": "C:/wonnho/JavaWebWorkBook/JavaWorkBook/src/main/java/org/workbook/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wonnho/JavaWebWorkBook/JavaWorkBook/src/main/webapp&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/wonnho/JavaWebWorkBook/JavaWorkBook/src/main/java/org/workbook/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wonnho\JavaWebWorkBook\JavaWorkBook\src\main\webapp\WEB-INF\calculator" />
@@ -80,13 +92,13 @@
       <recent name="C:\wonnho\JavaWebWorkBook\JavaWorkBook\src\main\webapp\WEB-INF" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Smart Tomcat.smartTomcat">
     <configuration name="JavaWorkBook [appRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -103,6 +115,33 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="smartTomcat" type="com.poratu.idea.plugins.tomcat">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="catalinaBase" value="C:\Users\user\.SmartTomcat\JavaWorkBook\JavaWorkBook.main" />
+      <option name="contextPath" value="/" />
+      <option name="docBase" value="C:\wonnho\JavaWebWorkBook\JavaWorkBook\src\main\webapp" />
+      <option name="extraClassPath" value="" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/9.0.117" />
+          <option name="path" value="$PROJECT_DIR$/../../../apache-tomcat-9.0.117" />
+          <option name="version" value="9.0.117.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="-Djava.home=&quot;C:\Program Files\Java\jdk-17.0.18.8-hotspot&quot;" />
+      <module name="JavaWorkBook.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.JavaWorkBook [appRun]" />
+      <item itemvalue="Smart Tomcat.smartTomcat" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.JavaWorkBook [appRun]" />
@@ -141,7 +180,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/workbook/todo/TodoListController.java</url>
-          <line>18</line>
+          <line>24</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
