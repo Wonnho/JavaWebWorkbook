@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="430b86b5-2009-4a23-a579-753ea7d4de5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/workbook/domain/TodoVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/workbook/dao/ConnectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/workbook/dao/ConnectTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +58,7 @@
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.ConnectTest.table_check">
+  <component name="RunManager" selected="Gradle.ConnectTest.hikariCPconnectionTest">
     <configuration name="ConnectTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -76,6 +73,30 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;org.workbook.dao.ConnectTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConnectTest.hikariCPconnectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.workbook.dao.ConnectTest.hikariCPconnectionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -136,6 +157,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ConnectTest.hikariCPconnectionTest" />
         <item itemvalue="Gradle.ConnectTest.table_check" />
         <item itemvalue="Gradle.ConnectTest.testConnection" />
         <item itemvalue="Gradle.ConnectTest" />
