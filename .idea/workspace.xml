@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="430b86b5-2009-4a23-a579-753ea7d4de5a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/workbook/dao/ConnectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/workbook/dao/ConnectTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/dao/ConnectionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/dao/TodoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/workbook/dao/TodoDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/workbook/domain/TodoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/domain/TodoVO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
