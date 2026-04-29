@@ -1,8 +1,6 @@
 package org.workbook.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -10,6 +8,8 @@ import java.time.LocalDate;
 @Getter
 @Builder
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class TodoVO {
     private Long tno;
@@ -17,8 +17,8 @@ public class TodoVO {
     private LocalDate dueDate;
     private boolean done;
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+//    @Override
+//    public String toString() {
+//        return super.toString();
+//    }
 }

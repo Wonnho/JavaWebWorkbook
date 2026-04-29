@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="430b86b5-2009-4a23-a579-753ea7d4de5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/dao/ConnectionUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/dao/TodoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/workbook/dao/TodoDAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/dto/TodoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/service/TodoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/util/MapperUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/workbook/domain/TodoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/domain/TodoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/dao/TodoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/dao/TodoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/domain/TodoVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/domain/TodoVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/workbook/dao/TodoDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/workbook/dao/TodoDAOTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +27,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand />
@@ -37,6 +43,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -62,8 +69,8 @@
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.ConnectTest.hikariCPconnectionTest">
-    <configuration name="ConnectTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.TodoDAOTest.testUpdateOne">
+    <configuration name="TodoDAOTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -76,7 +83,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.workbook.dao.ConnectTest&quot;" />
+            <option value="&quot;org.workbook.dao.TodoDAOTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -87,7 +94,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ConnectTest.hikariCPconnectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TodoDAOTest.deleteOne" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -100,7 +107,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.workbook.dao.ConnectTest.hikariCPconnectionTest&quot;" />
+            <option value="&quot;org.workbook.dao.TodoDAOTest.deleteOne&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -111,7 +118,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ConnectTest.table_check" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TodoDAOTest.testList" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -124,7 +131,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.workbook.dao.ConnectTest.table_check&quot;" />
+            <option value="&quot;org.workbook.dao.TodoDAOTest.testList&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -135,7 +142,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ConnectTest.testConnection" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TodoDAOTest.testOne" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -148,7 +155,31 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.workbook.dao.ConnectTest.testConnection&quot;" />
+            <option value="&quot;org.workbook.dao.TodoDAOTest.testOne&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="TodoDAOTest.testUpdateOne" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.workbook.dao.TodoDAOTest.testUpdateOne&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -161,10 +192,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ConnectTest.hikariCPconnectionTest" />
-        <item itemvalue="Gradle.ConnectTest.table_check" />
-        <item itemvalue="Gradle.ConnectTest.testConnection" />
-        <item itemvalue="Gradle.ConnectTest" />
+        <item itemvalue="Gradle.TodoDAOTest.testUpdateOne" />
+        <item itemvalue="Gradle.TodoDAOTest.deleteOne" />
+        <item itemvalue="Gradle.TodoDAOTest.testOne" />
+        <item itemvalue="Gradle.TodoDAOTest.testList" />
+        <item itemvalue="Gradle.TodoDAOTest" />
       </list>
     </recent_temporary>
   </component>
@@ -178,5 +210,30 @@
       <updated>1777341742624</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/workbook/dao/TodoDAOTest.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/workbook/dao/TodoDAOTest.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/org/workbook/dao/TodoDAOTest.java</url>
+          <line>23</line>
+          <properties class="org.workbook.dao.TodoDAOTest" method="testInsert">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
