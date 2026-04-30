@@ -1,11 +1,13 @@
 package org.workbook.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.workbook.dao.TodoDAO;
 import org.workbook.domain.TodoVO;
 import org.workbook.dto.TodoDTO;
 import org.workbook.util.MapperUtil;
 
+@Log4j2
 public enum TodoService {
     INSTANCE;
     private TodoDAO dao;
@@ -19,7 +21,8 @@ public enum TodoService {
 
     public void register(TodoDTO todoDTO) throws Exception {
         TodoVO todoVO=modelMapper.map(todoDTO,TodoVO.class);
-        System.out.println("todoVO: " + todoVO);
+       // System.out.println("todoVO: " + todoVO);
+        log.info(todoVO);
         dao.insert(todoVO);
     }
 }
