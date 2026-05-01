@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="430b86b5-2009-4a23-a579-753ea7d4de5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/controller/TodoListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/calc/SampleServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/calc/TodoRegisterController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/calc/calcController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/calc/inputController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/service/TodoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/service/TodoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/todo/TodoListController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/todo/dto/TodoDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/todo/service/TodoReadController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/todo/service/TodoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/controller/TodoListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/controller/TodoListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/controller/TodoReadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/controller/TodoReadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/read.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/read.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +46,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -72,7 +72,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.TodoServiceTest.testRegister">
+  <component name="RunManager" selected="Smart Tomcat.Tomcat Server">
     <configuration name="TodoDAOTest.deleteOne" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -193,6 +193,40 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="Tomcat Server" type="com.poratu.idea.plugins.tomcat">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="catalinaBase" value="C:\Users\user\.SmartTomcat\jdbcconnection\jdbcconnection.main" />
+      <option name="contextPath" value="/" />
+      <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
+      <option name="envOptions">
+        <map />
+      </option>
+      <option name="extraClassPath" value="" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/9.0.117" />
+          <option name="path" value="$PROJECT_DIR$/../../apache-tomcat-9.0.117" />
+          <option name="version" value="9.0.117.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" value="" />
+      <module name="jdbcconnection.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.TodoDAOTest.deleteOne" />
+      <item itemvalue="Gradle.TodoDAOTest.testOne" />
+      <item itemvalue="Gradle.TodoDAOTest.testUpdateOne" />
+      <item itemvalue="Gradle.TodoServiceTest" />
+      <item itemvalue="Gradle.TodoServiceTest.testRegister" />
+      <item itemvalue="Smart Tomcat.Tomcat Server" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.TodoServiceTest.testRegister" />
