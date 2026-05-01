@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @WebServlet(name="todoModifyController",value="/todo/modify")
@@ -22,7 +23,7 @@ public class TodoModifyController extends HttpServlet {
             DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws
             ServletException, IOException {
         try {
 
@@ -37,11 +38,23 @@ public class TodoModifyController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req,HttpServletResponse res)
-        throws ServletException, IOException{
+    protected void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException{
 
-        String finishedSTr=req.getParameter("done");
+        String doneSTr=req.getParameter("done");
+        TodoDTO todoDTO=TodoDTO.builder()
+                .tno(Long.parseLong(req.getParameter("tno")))
+                .title(req.getParameter("title"))
+                .dueDate(LocalDate.parse(req.getParameter("dueDate"),DATAFORMATTER))
+                .done(doneSTr !=null && doneSTr.equals("on"))
+                .build();
 
-
+        log.info("/todo/modify  POST.....");
+        log.info(todoDTO);
+        try {
+            todoService.modify(todoDTO);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        res.sendRedirect("/todo/list");
     }
 }

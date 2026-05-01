@@ -47,4 +47,9 @@ public enum TodoService {
         TodoDTO todoDTO=modelMapper.map(todoVO,TodoDTO.class);
         return todoDTO;
     }
+
+    public void modify(TodoDTO todoDTO) throws Exception {
+        log.info("todoDTO: " + todoDTO);
+        TodoVO todoVO=modelMapper.map(todoDTO, TodoVO.class);
+    }
 }
