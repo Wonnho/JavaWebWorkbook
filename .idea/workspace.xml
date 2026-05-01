@@ -5,10 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="430b86b5-2009-4a23-a579-753ea7d4de5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/controller/TodoRegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/3_React/blog.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/3_React/shop.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/3_React/shop_pair.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/FrontEnd/FrontEnd.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/React_clone_test/.idea/React_clone_test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/React_clone_test/blog.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/frontend2/frontend2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/life.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/mountain2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/mountain2_server/mountain2_server.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/mountain_blog.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/mountain_new.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/mountain_server/mountain_server.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/moutain.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/2_WebProject/untitled.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
