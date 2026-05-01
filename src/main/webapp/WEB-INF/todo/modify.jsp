@@ -6,7 +6,7 @@
     <title>Todo read</title>
 </head>
 <body>
-<form id="form1" action="/todo/modify" value="${dto.tno}" readOnly>
+<form id="form1" action="/todo/modify" method="post">
 <div>
 <input type="text" name="tno" value="${dto.tno}" readOnly> </div>
 
@@ -24,7 +24,7 @@
 </div>
 </form>
 
-<form id="form2" action="/todo/remove" value="${dto.tno}" readOnly>
+<form id="form2" action="/todo/remove" method="post">
 <input type="hidden" name="tno" value="${dto.tno}" readOnly>
 <div>
 <button type="submit" >Remove</button>
