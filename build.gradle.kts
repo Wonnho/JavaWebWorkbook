@@ -15,6 +15,8 @@ dependencies {
     implementation ("org.mariadb.jdbc:mariadb-java-client:3.3.3")
     testImplementation("org.projectlombok:lombok:1.18.28")
     compileOnly("javax.servlet:javax.servlet-api:4.0.1")
+    // JSTL Library for Tomcat 9 and below
+    implementation ("javax.servlet:jstl:1.2")
 
     // ✅ Lombok (핵심)
     compileOnly("org.projectlombok:lombok:1.18.32")
