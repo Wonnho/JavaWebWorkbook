@@ -7,6 +7,9 @@ import org.workbook.domain.TodoVO;
 import org.workbook.dto.TodoDTO;
 import org.workbook.util.MapperUtil;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Log4j2
 public enum TodoService {
     INSTANCE;
@@ -18,11 +21,30 @@ public enum TodoService {
         modelMapper= MapperUtil.INSTANCE.get();
 
     }
+    public List<TodoDTO> listAll()throws Exception {
 
+        List<TodoVO> voList = dao.selectAll();
+
+        log.info("voList.................");
+        log.info(voList);
+
+        List<TodoDTO> dtoList = voList.stream()
+                .map(vo -> modelMapper.map(vo,TodoDTO.class))
+                .collect(Collectors.toList());
+
+        return dtoList;
+    }
     public void register(TodoDTO todoDTO) throws Exception {
         TodoVO todoVO=modelMapper.map(todoDTO,TodoVO.class);
        // System.out.println("todoVO: " + todoVO);
         log.info(todoVO);
         dao.insert(todoVO);
+    }
+
+    public TodoDTO get(Long tno) throws Exception {
+        log.info("tno"+tno);
+        TodoVO todoVO=dao.selectOne(tno);
+        TodoDTO todoDTO=modelMapper.map(todoVO,TodoDTO.class);
+        return todoDTO;
     }
 }
