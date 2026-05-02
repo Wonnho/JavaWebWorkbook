@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
             //  String str=todoid + todopw;
             MemberDTO memberDTO = MemberService.INSTANCE.login(todoid, todopw);
             HttpSession session = req.getSession();
-            session.setAttribute("LoginInfo", memberDTO);
+            session.setAttribute("loginInfo", memberDTO);
             res.sendRedirect("/todo/list");
         } catch (Exception e) {
             res.sendRedirect("login?result=error");

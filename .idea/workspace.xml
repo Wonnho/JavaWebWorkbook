@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="430b86b5-2009-4a23-a579-753ea7d4de5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/dto/MemberDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/service/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/workbook/dao/MemberDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/workbook/dao/MemberDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/filter/LoginCheckFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/filter/LoginCheckFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/list.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +83,7 @@
       <recent name="C:\wonnho\JavaWebWorkbook\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MemberDAOTest.testLogin">
+  <component name="RunManager" selected="Smart Tomcat.Tomcat Server">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.workbook.Main" />
       <module name="jdbcconnection.main" />

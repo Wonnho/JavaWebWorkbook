@@ -24,7 +24,7 @@ public class LoginCheckFilter implements Filter {
 
         HttpSession session= hreq.getSession();
 
-        if (session.getAttribute("LoginInfo")==null) {
+        if (session.getAttribute("loginInfo")==null) {
             hres.sendRedirect("/login");
             return;
         }
