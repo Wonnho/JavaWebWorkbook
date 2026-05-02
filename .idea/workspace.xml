@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="430b86b5-2009-4a23-a579-753ea7d4de5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/controller/LogoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/workbook/dao/MemberDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/workbook/dao/MemberDAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/todo/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/workbook/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/workbook/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +82,21 @@
       <recent name="C:\wonnho\JavaWebWorkbook\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="Smart Tomcat.Tomcat Server">
-    <configuration name="TodoDAOTest.deleteOne" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.MemberDAOTest.testLogin">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.workbook.Main" />
+      <module name="jdbcconnection.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.workbook.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConnectTest.hikariCPconnectionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -95,7 +109,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.workbook.dao.TodoDAOTest.deleteOne&quot;" />
+            <option value="&quot;org.workbook.dao.ConnectTest.hikariCPconnectionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -106,7 +120,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="TodoDAOTest.testOne" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MemberDAOTest.testLogin" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -119,31 +133,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.workbook.dao.TodoDAOTest.testOne&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="TodoDAOTest.testUpdateOne" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;org.workbook.dao.TodoDAOTest.testUpdateOne&quot;" />
+            <option value="&quot;org.workbook.dao.MemberDAOTest.testLogin&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -226,20 +216,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.TodoDAOTest.deleteOne" />
-      <item itemvalue="Gradle.TodoDAOTest.testOne" />
-      <item itemvalue="Gradle.TodoDAOTest.testUpdateOne" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.ConnectTest.hikariCPconnectionTest" />
+      <item itemvalue="Gradle.MemberDAOTest.testLogin" />
       <item itemvalue="Gradle.TodoServiceTest" />
       <item itemvalue="Gradle.TodoServiceTest.testRegister" />
       <item itemvalue="Smart Tomcat.Tomcat Server" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MemberDAOTest.testLogin" />
+        <item itemvalue="Gradle.ConnectTest.hikariCPconnectionTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.TodoServiceTest.testRegister" />
         <item itemvalue="Gradle.TodoServiceTest" />
-        <item itemvalue="Gradle.TodoDAOTest.testUpdateOne" />
-        <item itemvalue="Gradle.TodoDAOTest.deleteOne" />
-        <item itemvalue="Gradle.TodoDAOTest.testOne" />
       </list>
     </recent_temporary>
   </component>
