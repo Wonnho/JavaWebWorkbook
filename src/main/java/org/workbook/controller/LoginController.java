@@ -1,6 +1,8 @@
 package org.workbook.controller;
 
 import lombok.extern.log4j.Log4j2;
+import org.workbook.dto.MemberDTO;
+import org.workbook.service.MemberService;
 
 import javax.security.sasl.SaslException;
 import javax.servlet.ServletException;
@@ -27,13 +29,17 @@ public class LoginController extends HttpServlet {
             throws SaslException, IOException, ServletException {
         log.info("Login post...............");
 
-    String todoid=req.getParameter("todoid");
-    String todopw=req.getParameter("todopw");
+        String todoid = req.getParameter("todoid");
+        String todopw = req.getParameter("todopw");
 
-    String str=todoid + todopw;
-
-        HttpSession session=req.getSession();
-        session.setAttribute("LoginInfo",str);
-        res.sendRedirect("/todo/list");
+        try {
+            //  String str=todoid + todopw;
+            MemberDTO memberDTO = MemberService.INSTANCE.login(todoid, todopw);
+            HttpSession session = req.getSession();
+            session.setAttribute("LoginInfo", memberDTO);
+            res.sendRedirect("/todo/list");
+        } catch (Exception e) {
+            res.sendRedirect("login?result=error");
+        }
     }
     }
