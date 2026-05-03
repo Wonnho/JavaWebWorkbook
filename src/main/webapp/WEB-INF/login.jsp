@@ -14,6 +14,7 @@
 <form action="/login" method="post">
 <input type="text" name="todoid">
 <input type="text" name="todopw">
+<input type="checkbox" name="auto">
 <button type="submit">Login</button>
 </form>
 </body>

@@ -33,4 +33,38 @@ public class MemberDAO {
 
                 return memberVO;
     }
+
+    public void updateUuid(String todoid,String uuid) throws Exception {
+        String sql="update tbl_member set uuid=? where todoid=?";
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection(); // 네가 만든 커넥션 유틸
+        @Cleanup PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setString(1,uuid);
+        ps.setString(2,todoid);
+        ps.executeUpdate();
+
+    }
+
+    public MemberVO selectUUID(String uuid) throws Exception {
+        String sql="select todoid, todopw, todoname,uuid from tbl_member where uuid=?";
+
+        @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection(); // 네가 만든 커넥션 유틸
+        @Cleanup PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setString(1,uuid);
+
+        @Cleanup ResultSet rs=ps.executeQuery();
+
+        rs.next(); // 있으면 true (로그인 성공)
+
+        MemberVO memberVO= MemberVO.builder()
+                .todoid(rs.getString(1))
+                .todopw(rs.getString(2))
+                .todoname(rs.getString(3))
+                .uuid(rs.getString(4))
+                .build();
+
+        return memberVO;
+
+    }
 }

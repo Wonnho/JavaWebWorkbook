@@ -11,5 +11,6 @@ public class MemberVO {
     private String todoid;
     private String todopw;
     private String todoname;
+    private String uuid;
 
 }

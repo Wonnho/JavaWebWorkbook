@@ -7,11 +7,9 @@ import org.workbook.service.MemberService;
 import javax.security.sasl.SaslException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.UUID;
 
 @WebServlet("/login")
 @Log4j2
@@ -21,7 +19,7 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws SaslException, IOException, ServletException {
         log.info("Login get...............");
-       req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req,res);
+        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, res);
     }
 
     @Override
@@ -32,9 +30,26 @@ public class LoginController extends HttpServlet {
         String todoid = req.getParameter("todoid");
         String todopw = req.getParameter("todopw");
 
+        String auto = req.getParameter("auto");
+        boolean rememberMe = auto != null && auto.equals("on");
+
+
         try {
             //  String str=todoid + todopw;
             MemberDTO memberDTO = MemberService.INSTANCE.login(todoid, todopw);
+
+            if (rememberMe) {
+                String uuid = UUID.randomUUID().toString();
+                MemberService.INSTANCE.updateUuid(todoid,uuid);
+                memberDTO.setUuid(uuid);
+
+                Cookie rememberCookie=new Cookie("remember-me",uuid);
+                rememberCookie.setMaxAge(60*60*24*7);
+                rememberCookie.setPath("/");
+
+                res.addCookie(rememberCookie);
+            }
+
             HttpSession session = req.getSession();
             session.setAttribute("loginInfo", memberDTO);
             res.sendRedirect("/todo/list");
@@ -42,4 +57,5 @@ public class LoginController extends HttpServlet {
             res.sendRedirect("login?result=error");
         }
     }
+
     }
