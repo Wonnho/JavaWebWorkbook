@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSON</title>
+</head>
+<body>
+<h1> web server plays a role of API server using Spring Boot</h1>
+<!--/*<h4>${List}</h4>*/-->
+
+<h3>[[${List}]]</h3>
+<hr/>
+<h4 th:text="${List}">></h4>
+<div th:with="num1=${10}, num2=${1944}">
+    <h4 th:text="${num1+num2}"></h4>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>repetition</title>
+</head>
+<body>
+<h1> Repetition: each, block</h1>
+<div>
+    <ul>
+        <li th:each="str:${List}" th:text="${str}"></li>
+    </ul>
+
+    <ul>
+        <th:block th:each="str,status:${List}">
+            <li>[[${status.index}]]----[[${str}]]</li>
+        </th:block>
+    </ul>
+    <ul>
+        <li th:each="str,status:${List}">
+        <span th:if="${status.odd}">ODD----[[${str}]]</span>
+            <span th:unless="${status.odd}">EVEN----[[${str}]]</span>
+
+        </li>
+    </ul>
+
+    <ul>
+        <li th:each="str,status:${List}">
+            <span th:text="${status.odd}? 'ODD --------'+${str}">홀수만</span>
+        </li>
+    </ul>
+
+    <ul>
+        <li th:each="str,status:${List}">
+            <span th:text="${status.odd}? 'ODD --------'+${str}:'EVEN --------'+${str}">홀수 짝수 구분</span>
+        </li>
+    </ul>
+
+    <ul>
+        <li th:each="str,status: ${List}">
+            <th:block th:switch="${status.index % 3}">
+            <span th:case="0">0</span>
+            <span th:case="1">1</span>
+            <span th:case="2">2</span>
+            </th:block>
+        </li>
+    </ul>
+
+</div>
+
+</body>
+</html>
