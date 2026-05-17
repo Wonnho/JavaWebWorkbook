@@ -6,7 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @Log4j2
@@ -29,4 +33,47 @@ public class SampleController {
         List<String> list=Arrays.asList("JSON","<th:each>","<ch:block>","repetition");
         model.addAttribute("List",list);
     }
+
+
+    class SampleDTO {
+        private String p1,p2,p3;
+
+        public String getP1() {
+            return p1;
+        }
+
+        public String getP2() {
+            return p2;
+        }
+
+        public String getP3() {
+            return p3;
+        }
+    }
+
+    @GetMapping("thymeleaf/inlinefct")
+    public void inlinefct(Model model) {
+
+        log.info("thymelieaf inline.................");
+        List<String> strList=IntStream.range(1,10)
+                .mapToObj(k -> "Data" + k)
+                .collect(Collectors.toList());
+
+        model.addAttribute("list",strList);
+
+         Map<String,String> map=new HashMap<>();
+         map.put("Fred Ramsdell","Sonoma");
+         map.put("Elon Musk","Tesla");
+
+         model.addAttribute("map",map);
+         // compare above model.addAttribute with the last one
+
+        SampleDTO sampleDTO=new SampleDTO();
+           sampleDTO.p1="value --- p1";
+            sampleDTO.p2="value --- p2";
+            sampleDTO.p3="value --- p3";
+
+            model.addAttribute("dto",sampleDTO);
+    }
+
 }
