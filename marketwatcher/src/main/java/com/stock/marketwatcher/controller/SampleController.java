@@ -76,4 +76,9 @@ public class SampleController {
             model.addAttribute("dto",sampleDTO);
     }
 
+    @GetMapping("/thymeleaf/body/bodycontent")
+    public void bodycontent(Model model) {
+         model.addAttribute("fruits",new String[]{"thymeleaf","melon","peach"});
+
+    }
 }
