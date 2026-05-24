@@ -1,3 +1,10 @@
+
+buildscript {
+	ext {
+		queryDslVersion = "5.1.0"
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.14'
@@ -16,7 +23,6 @@ java {
 repositories {
 	mavenCentral()
 }
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -31,8 +37,24 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
-}
 
+	// QueryDSL Spring Boot 3 / Jakarta Setup
+	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
+	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}:jakarta"
+	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+} // <-- CRITICAL: Safely close the dependencies block here
+
+// Move tasks out to the root level
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Move sourceSets out to the root level
+sourceSets {
+	main {
+		java {
+			srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
+		}
+	}
 }
