@@ -1,6 +1,9 @@
 package com.stock.marketwatcher.dto;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
+
 
 public class BoardDTO {
 
