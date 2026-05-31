@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @ToString
-public class PageResponseDTO {
+public class PageResponseDTO<E> {
     private int page;
     private int size;
     private int total;
@@ -27,8 +27,8 @@ public class PageResponseDTO {
             return ;
         }
 
-        pageRequestDTO.getPage();
-        pageRequestDTO.getSize();
+        this.page=pageRequestDTO.getPage();
+        this.size=pageRequestDTO.getSize();
 
         this.total=total;
         this.dtoList=dtoList;

@@ -1,6 +1,8 @@
 package com.stock.marketwatcher.service;
 
 import com.stock.marketwatcher.dto.BoardDTO;
+import com.stock.marketwatcher.dto.PageRequestDTO;
+import com.stock.marketwatcher.dto.PageResponseDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,19 @@ public class BoardServiceTests {
                 .build();
 
         boardService.modify(boardDTO);
+    }
+
+    @Test
+    public void listTest() {
+        PageRequestDTO pageRequestDTO=PageRequestDTO.builder()
+                .type("tcw")
+                .keyword("1")
+                .page(1)
+                .size(10)
+                .build();
+
+        PageResponseDTO<BoardDTO> responseDTO=boardService.list(pageRequestDTO);
+
+        log.info(responseDTO);
     }
 }

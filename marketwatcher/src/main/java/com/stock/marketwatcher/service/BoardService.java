@@ -1,6 +1,8 @@
 package com.stock.marketwatcher.service;
 
 import com.stock.marketwatcher.dto.BoardDTO;
+import com.stock.marketwatcher.dto.PageRequestDTO;
+import com.stock.marketwatcher.dto.PageResponseDTO;
 
 public interface BoardService {
 
@@ -12,5 +14,7 @@ public interface BoardService {
    //BoardDTO modify(Long bno);
    void modify(BoardDTO boardDTO);
    void remove(Long bno);
+
+   PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO);
 
 }
