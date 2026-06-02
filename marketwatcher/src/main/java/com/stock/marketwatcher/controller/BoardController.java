@@ -5,6 +5,7 @@ import com.stock.marketwatcher.dto.BoardDTO;
 import com.stock.marketwatcher.dto.PageRequestDTO;
 import com.stock.marketwatcher.dto.PageResponseDTO;
 import com.stock.marketwatcher.service.BoardService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class BoardController {
     }
 
     @PostMapping("/register")
-    public String register(BoardDTO boardDTO, BindingResult  bindingResult, RedirectAttributes redirectAttributes) {
+    public String register(@Valid BoardDTO boardDTO, BindingResult  bindingResult, RedirectAttributes redirectAttributes) {
 
         log.info("board POst register .....................");
     if(bindingResult.hasErrors()) {
