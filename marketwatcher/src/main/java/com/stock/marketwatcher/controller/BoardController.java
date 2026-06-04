@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -37,8 +38,8 @@ public class BoardController {
         log.info("board POst register .....................");
     if(bindingResult.hasErrors()) {
         log.info("hasErrors.............");
-        redirectAttributes.addFlashAttribute("erorros",bindingResult.getAllErrors());
-        return "redirect::/board/register";
+        redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
+        return "redirect:/board/register";
     }
     log.info(boardDTO);
     Long bno=boardService.register(boardDTO);
@@ -48,4 +49,12 @@ public class BoardController {
 
     @GetMapping("register")
     public void registerGET(){};
+
+    @GetMapping("/read")
+    public void read(@RequestParam("bno") Long bno, PageRequestDTO pageRequestDTO, Model model) {
+      BoardDTO  boardDTO=boardService.readOne(bno);
+      log.info("board DTO :", boardDTO);
+      model.addAttribute("dto",boardDTO);
+    }
 }
+
