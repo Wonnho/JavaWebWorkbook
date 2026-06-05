@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -50,11 +53,55 @@ public class BoardController {
     @GetMapping("register")
     public void registerGET(){};
 
-    @GetMapping("/read")
+    @GetMapping({"/read","/modify"})
     public void read(@RequestParam("bno") Long bno, PageRequestDTO pageRequestDTO, Model model) {
       BoardDTO  boardDTO=boardService.readOne(bno);
       log.info("board DTO :", boardDTO);
       model.addAttribute("dto",boardDTO);
     }
+
+    @PostMapping("/modify")
+    public String modify(PageRequestDTO pageRequestDTO,
+                                 @Valid BoardDTO boardDTO,
+                                  BindingResult bindingResult,
+                                  RedirectAttributes redirectAttributes){
+
+
+        log.info("board modify post......." + boardDTO);
+
+        if(bindingResult.hasErrors()) {
+            log.info("has errors.......");
+
+            String link = pageRequestDTO.getLink();
+
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors() );
+
+            redirectAttributes.addAttribute("bno", boardDTO.getBno());
+
+            return "redirect:/board/modify?"+link;
+        }
+
+        boardService.modify(boardDTO);
+
+        redirectAttributes.addFlashAttribute("result", "modified");
+
+        redirectAttributes.addAttribute("bno", boardDTO.getBno());
+
+        return "redirect:/board/read";
+    }
+    @PostMapping("/remove")
+    public String remove(Long bno, RedirectAttributes redirectAttributes) {
+
+        log.info("remove post.. " + bno);
+
+        boardService.remove(bno);
+
+        redirectAttributes.addFlashAttribute("result", "removed");
+
+        return "redirect:/board/list";
+
+    }
+
+
 }
 
