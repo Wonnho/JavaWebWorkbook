@@ -26,7 +26,7 @@ public class ReplyRepositoryTests {
         Board board=Board.builder().bno(bno).build();
        Reply reply= Reply.builder()
                 .board(board)
-                .replyText("백 번 댓글을 붙여봐")
+                .replyText("exclude='board',룰 주석처리하고 실행하니 에러가 발생.그래서 이번에 @Transactional을 붙이니 에러가 발생하지 않음")
                 .replyer("감놔라")
                 .build();
 
