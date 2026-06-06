@@ -2,6 +2,7 @@ package com.stock.marketwatcher.repository;
 
 import com.stock.marketwatcher.domain.Board;
 import com.stock.marketwatcher.domain.Reply;
+import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class ReplyRepositoryTests {
 
        replyRepository.save(reply);
     }
-
+    @Transactional
     @Test
     public void BoardRepliesTest() {
         Long bno=99L;
