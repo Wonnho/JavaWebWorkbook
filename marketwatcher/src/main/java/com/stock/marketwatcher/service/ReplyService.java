@@ -1,4 +1,16 @@
 package com.stock.marketwatcher.service;
 
+import com.stock.marketwatcher.dto.PageRequestDTO;
+import com.stock.marketwatcher.dto.PageResponseDTO;
+import com.stock.marketwatcher.dto.ReplyDTO;
+
 public interface ReplyService {
+    Long register(ReplyDTO replyDTO);
+    ReplyDTO read(Long rno);
+
+    void modify(ReplyDTO replyDTO);
+
+    void remove(Long rno);
+
+    PageResponseDTO<ReplyDTO> getListOfBoard(Long bno, PageRequestDTO pageRequestDTO);
 }

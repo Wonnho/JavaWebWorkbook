@@ -9,5 +9,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface ReplyRepository extends JpaRepository<Reply,Long> {
     @Query("select r from Reply r where r.board.bno=:bno")
-    Page<Reply> ListOfBoard(Long bno, Pageable pageable);
+    Page<Reply> listOfBoard(Long bno, Pageable pageable);
+
+
 }
