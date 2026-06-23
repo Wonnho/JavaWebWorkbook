@@ -17,4 +17,6 @@ public interface BoardService {
 
    PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO);
 
+   PageResponseDTO listWithReplyCount(PageRequestDTO pageRequestDTO);
+
 }

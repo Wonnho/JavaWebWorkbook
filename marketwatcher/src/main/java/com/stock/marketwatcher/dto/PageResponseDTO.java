@@ -22,7 +22,7 @@ public class PageResponseDTO<E> {
     private List dtoList;
 
     @Builder(builderMethodName = "withAll")
-    public PageResponseDTO(PageRequestDTO pageRequestDTO,List dtoList, int total) {
+    public PageResponseDTO(PageRequestDTO pageRequestDTO, List dtoList, int total) {
         if(total<=0) {
             return ;
         }

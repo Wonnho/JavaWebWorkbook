@@ -1,7 +1,7 @@
 package com.stock.marketwatcher.controller;
 
-import com.stock.marketwatcher.domain.Board;
 import com.stock.marketwatcher.dto.BoardDTO;
+import com.stock.marketwatcher.dto.BoardListReplyCountDTO;
 import com.stock.marketwatcher.dto.PageRequestDTO;
 import com.stock.marketwatcher.dto.PageResponseDTO;
 import com.stock.marketwatcher.service.BoardService;
@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.w3c.dom.stylesheets.LinkStyle;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -30,8 +27,11 @@ public class BoardController {
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model) {
 
-       PageResponseDTO<BoardDTO> responseDTO=boardService.list(pageRequestDTO);
-    log.info(responseDTO);
+   //    PageResponseDTO<BoardDTO> responseDTO=boardService.list(pageRequestDTO);
+    PageResponseDTO<BoardListReplyCountDTO> responseDTO=
+            boardService.listWithReplyCount(pageRequestDTO);
+
+        log.info(responseDTO);
     model.addAttribute("responseDTO",responseDTO);
     }
 

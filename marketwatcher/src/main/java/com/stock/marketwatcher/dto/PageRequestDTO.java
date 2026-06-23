@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageRequestDTO {
+public class PageRequestDTO<B> {
 
     @Builder.Default
     private int page=1;
