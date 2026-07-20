@@ -37,7 +37,7 @@ public class ReplyRepositoryTests {
     public void BoardRepliesTest() {
         Long bno=99L;
         Pageable pageable =PageRequest.of(0,10, Sort.by("rno").descending());
-        Page<Reply> result=replyRepository.ListOfBoard(bno,pageable);
+        Page<Reply> result=replyRepository.listOfBoard(bno,pageable);
 
       result.getContent().forEach(reply -> {
           log.info(reply);

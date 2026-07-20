@@ -75,6 +75,33 @@
         </div>
     </div>
 
+    <div class="modal registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register Reply</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Reply Text</span>
+                        <input type="text" class="form-control replyText" >
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Replyer</span>
+                        <input type="text" class="form-control replyer" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary registerBtn">Register</button>
+                    <button type="button" class="btn btn-outline-dark closeRegisterBtn" >Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end regist modal -->
+
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/reply.js"></script>
 </div>
@@ -103,7 +130,7 @@ function printPages(data){ //페이지 목록 출력
         //pagination
         let pageStr = '';
 
-        if(data.prev) {
+        if(data.previous) {
             pageStr +=`<li class="page-item"><a class="page-link" data-page="${data.start-1}">PREV</a></li>`
         }
 
@@ -131,7 +158,67 @@ function printPages(data){ //페이지 목록 출력
     })
     }
 
-        printReplies(1, 10,true);
+    printReplies(1, 10, true);
+
+    // ===== 댓글 등록 모달 =====
+    const registerModal = new bootstrap.Modal(document.querySelector(".registerModal"));
+
+    const addReplyBtn      = document.querySelector(".addReplyBtn");
+    const replyText        = document.querySelector(".replyText");
+    const replyer          = document.querySelector(".replyer");
+    const registerBtn      = document.querySelector(".registerBtn");
+    const closeRegisterBtn = document.querySelector(".closeRegisterBtn");
+
+    // ADD Reply -> 모달 열기
+    addReplyBtn.addEventListener("click", function (e) {
+        replyText.value = '';
+        replyer.value = '';
+        registerModal.show();
+    }, false);
+
+    // Close -> 모달 닫기
+    closeRegisterBtn.addEventListener("click", function (e) {
+        registerModal.hide();
+    }, false);
+
+    // Register -> 서버 POST 후 마지막 페이지 갱신
+    registerBtn.addEventListener("click", function (e) {
+        const replyObj = {
+            bno: bno,
+            replyText: replyText.value,
+            replyer: replyer.value
+        };
+
+        addReply(replyObj)
+            .then(result => {
+            alert(result.rno)
+                registerModal.hide();
+                 replyText.value=''
+                 replyer.value=''
+                printReplies(1, 10, true);
+            })
+            .catch(e => console.error(e));
+    }, false);
+
+    let page=1
+    let size=10
+
+        replyPaging.addEventListener("click", function (e){
+
+        e.preventDefault()
+        e.stopPropagation()
+
+        const target = e.target
+
+        if(!target || target.tagName != 'A'){
+            return
+        }
+
+        const pageNum = target.getAttribute("data-page")
+        page = pageNum
+        printReplies(page, size)
+
+    },false)
 
 
 </script>
