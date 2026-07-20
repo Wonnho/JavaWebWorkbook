@@ -1,5 +1,7 @@
 package com.stock.marketwatcher.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -27,6 +29,12 @@ public class ReplyDTO {
     @NotEmpty
     private String replyer;
 
-    private LocalDateTime regDate, modDate;
+   // private LocalDateTime regDate, modDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime regDate;
+
+    @JsonIgnore
+    private LocalDateTime modDate;
 
 }
