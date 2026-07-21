@@ -3,13 +3,16 @@ package com.stock.marketwatcher.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "imageSet")
 public class Board extends BaseEntity{
 
     @Id
@@ -31,5 +34,9 @@ public class Board extends BaseEntity{
         this.title=title;
         this.content=content;
     }
+
+    @OneToMany
+    @Builder.Default
+    private Set<BoardImage> imageSet=new HashSet<>();
 
 }
