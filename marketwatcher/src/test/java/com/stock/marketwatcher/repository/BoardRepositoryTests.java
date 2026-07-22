@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -138,6 +139,22 @@ public class BoardRepositoryTests {
         log.info(result.hasPrevious() +": " + result.hasNext());
 
         result.getContent().forEach(board -> log.info(board));
+    }
+
+    @Test
+    public void testInsertWithImages() {
+        Board board=Board.builder()
+                .title("Image test")
+                .content("upload image")
+                .writer("tester")
+                .build();
+
+        for (int k=0;k<3;k++) {
+            board.addImage(UUID.randomUUID().toString(),"file"+k+".png");
+        }
+
+        boardRepository.save(board);
+
     }
 
 }
