@@ -1,6 +1,7 @@
 package com.stock.marketwatcher.repository;
 
 import com.stock.marketwatcher.domain.Board;
+import com.stock.marketwatcher.domain.BoardImage;
 import com.stock.marketwatcher.dto.BoardListReplyCountDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -156,5 +157,19 @@ public class BoardRepositoryTests {
         boardRepository.save(board);
 
     }
+
+    @Test
+    public void testReadWithImages() {
+      Optional<Board>  result=boardRepository.findByWithImages(1L);
+    Board   board=result.orElseThrow();
+        log.info(board);
+        log.info("-------------------");
+        for (BoardImage boardImage : board.getImageSet()){
+
+            log.info(boardImage);
+        }
+    }
+
+
 
 }
