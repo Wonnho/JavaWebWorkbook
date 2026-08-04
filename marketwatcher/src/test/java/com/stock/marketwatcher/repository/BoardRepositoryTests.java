@@ -3,6 +3,7 @@ package com.stock.marketwatcher.repository;
 import com.stock.marketwatcher.domain.Board;
 import com.stock.marketwatcher.domain.BoardImage;
 import com.stock.marketwatcher.dto.BoardListReplyCountDTO;
+import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +12,23 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.IntStream;
+
+import static com.stock.marketwatcher.domain.QBoard.board;
 
 @SpringBootTest
 @Log4j2
 public class BoardRepositoryTests {
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private ReplyRepository replyRepository;
+
     @Test
     public void InsertTest() {
         IntStream.rangeClosed(1,100).forEach(k -> {
@@ -168,8 +176,54 @@ public class BoardRepositoryTests {
 
             log.info(boardImage);
         }
+
+    }
+    @Transactional
+    @Commit
+    @Test
+    public void testModifyImages() {
+        Optional<Board>   result=boardRepository.findByWithImages(1L);
+        Board board=result.orElseThrow();
+        board.clearImages();
+        for(int k=0;k<2;k++) {
+            board.addImage(UUID.randomUUID().toString(),"updatefile"+k+".png");
+        }
+        boardRepository.save(board);
+    }
+    @Transactional
+    @Commit
+    @Test
+  public  void testRemoveAll() {
+        Long bno=1L;
+
+        replyRepository.deleteByBoard_Bno(bno);
+        boardRepository.deleteById(bno);
     }
 
+@Test
+    public void testInsertAll() {
+        for(int k=1;k<=100;k++) {
+             Board board=Board.builder()
+                    .title("Title.."+k)
+                    .content("Content.."+k)
+                    .writer("Writer.."+k)
+                    .build();
 
+             for (int z=0;z<3;z++) {
+                 if(k%5==0) {
+                     continue;
+                 }
+                 board.addImage(UUID.randomUUID().toString(),k+"file"+z+".png");
+             }
+             boardRepository.save(board);
+        }
+}
 
+    @Transactional
+    @Test
+    public void testSearchImageReplyCount() {
+        Pageable pageable = PageRequest.of(0,10,Sort.by("bno").descending());
+
+        boardRepository.searchWithAll(null,null,pageable);
+    }
 }
