@@ -2,6 +2,7 @@ package com.stock.marketwatcher.repository;
 
 import com.stock.marketwatcher.domain.Board;
 import com.stock.marketwatcher.domain.BoardImage;
+import com.stock.marketwatcher.dto.BoardListAllDTO;
 import com.stock.marketwatcher.dto.BoardListReplyCountDTO;
 import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
@@ -166,27 +167,48 @@ public class BoardRepositoryTests {
 
     }
 
+    @Transactional
     @Test
     public void testReadWithImages() {
-      Optional<Board>  result=boardRepository.findByWithImages(1L);
-    Board   board=result.orElseThrow();
+        // 이미지 달린 게시글을 먼저 저장 후, 생성된 bno 로 조회
+        Board saved = Board.builder()
+                .title("read image test")
+                .content("read image content")
+                .writer("tester")
+                .build();
+        for (int k = 0; k < 3; k++) {
+            saved.addImage(UUID.randomUUID().toString(), "file" + k + ".png");
+        }
+        Long bno = boardRepository.save(saved).getBno();
+
+        Optional<Board> result = boardRepository.findByWithImages(bno);
+        Board board = result.orElseThrow();
         log.info(board);
         log.info("-------------------");
-        for (BoardImage boardImage : board.getImageSet()){
-
+        for (BoardImage boardImage : board.getImageSet()) {
             log.info(boardImage);
         }
-
     }
     @Transactional
-    @Commit
     @Test
     public void testModifyImages() {
-        Optional<Board>   result=boardRepository.findByWithImages(1L);
-        Board board=result.orElseThrow();
+        // 이미지 3개로 저장
+        Board saved = Board.builder()
+                .title("modify image test")
+                .content("modify image content")
+                .writer("tester")
+                .build();
+        for (int k = 0; k < 3; k++) {
+            saved.addImage(UUID.randomUUID().toString(), "file" + k + ".png");
+        }
+        Long bno = boardRepository.save(saved).getBno();
+
+        // 이미지 2개로 교체
+        Optional<Board> result = boardRepository.findByWithImages(bno);
+        Board board = result.orElseThrow();
         board.clearImages();
-        for(int k=0;k<2;k++) {
-            board.addImage(UUID.randomUUID().toString(),"updatefile"+k+".png");
+        for (int k = 0; k < 2; k++) {
+            board.addImage(UUID.randomUUID().toString(), "updatefile" + k + ".png");
         }
         boardRepository.save(board);
     }
@@ -224,6 +246,11 @@ public class BoardRepositoryTests {
     public void testSearchImageReplyCount() {
         Pageable pageable = PageRequest.of(0,10,Sort.by("bno").descending());
 
-        boardRepository.searchWithAll(null,null,pageable);
+        //boardRepository.searchWithAll(null,null,pageable);
+
+        Page<BoardListAllDTO> result=boardRepository.searchWithAll(null,null,pageable);
+        log.info("===================================");
+        log.info(result.getTotalElements());
+        result.getContent().forEach(boardListAllDTO -> log.info(boardListAllDTO));
     }
 }

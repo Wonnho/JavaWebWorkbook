@@ -49,7 +49,7 @@ public class PageRequestDTO<B> {
          if(type !=null && type.length()>0) {
              builder.append("&type=" + type);
          }
-         if(keyword !=null) {
+         if(keyword !=null && !keyword.isEmpty()) {
              try {
                     builder.append("&keyword=" + URLEncoder.encode(keyword,"UTF-8"));
              } catch (UnsupportedEncodingException e) {

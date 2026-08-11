@@ -2,6 +2,7 @@ package com.stock.marketwatcher.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,6 +38,7 @@ public class Board extends BaseEntity{
 
     @OneToMany(mappedBy = "board",cascade={CascadeType.ALL},fetch=FetchType.LAZY,orphanRemoval = true)
     @Builder.Default
+    @BatchSize(size=20)
     private Set<BoardImage> imageSet=new HashSet<>();
 
     public void addImage(String uuid,String fileName) {

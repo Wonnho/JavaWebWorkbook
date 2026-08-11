@@ -1,10 +1,7 @@
 package com.stock.marketwatcher.service;
 
 import com.stock.marketwatcher.domain.Board;
-import com.stock.marketwatcher.dto.BoardDTO;
-import com.stock.marketwatcher.dto.BoardListReplyCountDTO;
-import com.stock.marketwatcher.dto.PageRequestDTO;
-import com.stock.marketwatcher.dto.PageResponseDTO;
+import com.stock.marketwatcher.dto.*;
 import com.stock.marketwatcher.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -92,4 +89,22 @@ public class BoardServiceImpl implements BoardService {
                 .total((int)result.getTotalElements())
                 .build();
     }
+
+    @Override
+    public PageResponseDTO<BoardListAllDTO> ListWithAll(PageRequestDTO pageRequestDTO)
+    {
+        String[] types = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
+        Pageable pageable = pageRequestDTO.getPageable("bno");
+
+        Page<BoardListAllDTO> result = boardRepository.searchWithAll(types, keyword, pageable);
+
+        return PageResponseDTO.<BoardListAllDTO>withAll()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(result.getContent())
+                .total((int) result.getTotalElements())
+                .build();
+    }
+
+
 }
