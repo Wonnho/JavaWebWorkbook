@@ -3,11 +3,11 @@ package com.stock.marketwatcher.repository.search;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.stock.marketwatcher.domain.Board;
 import com.stock.marketwatcher.domain.QBoard;
 import com.stock.marketwatcher.domain.QReply;
-import com.stock.marketwatcher.domain.QBoardImage;
 import com.stock.marketwatcher.dto.BoardListAllDTO;
 import com.stock.marketwatcher.dto.BoardListReplyCountDTO;
 import com.stock.marketwatcher.dto.BoardImageDTO;
@@ -17,9 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardSearch {
@@ -151,67 +148,59 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         QBoard board = QBoard.board;
         QReply reply = QReply.reply;
 
-        // 검색 조건
-        BooleanBuilder where = new BooleanBuilder();
+        JPQLQuery<Board> boardJPQLQuery=from(board);
+        boardJPQLQuery.leftJoin(reply).on(reply.board.eq(board));
+
         if (types != null && types.length > 0 && keyword != null) {
+            // 검색 조건
+            BooleanBuilder booleanBuilder=new BooleanBuilder();
+
             for (String type : types) {
                 switch (type) {
-                    case "t": where.or(board.title.contains(keyword)); break;
-                    case "c": where.or(board.content.contains(keyword)); break;
-                    case "w": where.or(board.writer.contains(keyword)); break;
+                    case "t": booleanBuilder.or(board.title.contains(keyword)); break;
+                    case "c": booleanBuilder.or(board.content.contains(keyword)); break;
+                    case "w": booleanBuilder.or(board.writer.contains(keyword)); break;
                 }
             }
+
+            boardJPQLQuery.where(booleanBuilder);
         }
 
-        // 1) 게시글 + 댓글수 : 엔티티를 튜플에 담지 않고 스칼라만 프로젝션 (Hibernate 6.6 회피)
-        JPQLQuery<Board> query = from(board);
-        query.leftJoin(reply).on(reply.board.eq(board));
-        query.where(where);
-        query.groupBy(board);
+       boardJPQLQuery.groupBy(board);
+        getQuerydsl().applyPagination(pageable,boardJPQLQuery);
 
-        JPQLQuery<BoardListAllDTO> dtoQuery = query.select(Projections.bean(BoardListAllDTO.class,
-                board.bno,
-                board.title,
-                board.writer,
-                board.regDate,
-                reply.countDistinct().as("replyCount")));
+        JPQLQuery<Tuple> tupleJPQLQuery = boardJPQLQuery.select(board, reply.countDistinct());
+        List<Tuple> tupleList = tupleJPQLQuery.fetch();
 
-        getQuerydsl().applyPagination(pageable, dtoQuery);
+        List<BoardListAllDTO> dtoList = tupleList.stream().map(tuple -> {
+            Board board1 = tuple.get(board);
+            long replyCount = tuple.get(1, Long.class);
 
-        List<BoardListAllDTO> dtoList = dtoQuery.fetch();
 
-        // 2) 이미지 별도 조회 후 bno 기준으로 매핑
-        List<Long> bnoList = dtoList.stream()
-                .map(BoardListAllDTO::getBno)
-                .collect(Collectors.toList());
+            BoardListAllDTO dto = BoardListAllDTO.builder()
+                    .bno(board1.getBno())
+                    .title(board1.getTitle())
+                    .writer(board1.getWriter())
+                    .regDate(board1.getRegDate())
+                    .replyCount(replyCount)
+                    .build();
 
-        if (!bnoList.isEmpty()) {
-            QBoardImage boardImage = QBoardImage.boardImage;
-            List<Tuple> imageRows = from(boardImage)
-                    .where(boardImage.board.bno.in(bnoList))
-                    .orderBy(boardImage.board.bno.asc(), boardImage.ord.asc())
-                    .select(boardImage.board.bno, boardImage.uuid, boardImage.fileName, boardImage.ord)
-                    .fetch();
+            // BoardImage -> BoardImageDTO (ord 순 정렬, imageSet 은 @BatchSize 로 N+1 완화)
+            List<BoardImageDTO> imageDTOS = board1.getImageSet().stream().sorted()
+                    .map(boardImage -> BoardImageDTO.builder()
+                            .uuid(boardImage.getUuid())
+                            .fileName(boardImage.getFileName())
+                            .ord(boardImage.getOrd())
+                            .build())
+                    .collect(Collectors.toList());
 
-            Map<Long, List<BoardImageDTO>> imageMap = new HashMap<>();
-            for (Tuple row : imageRows) {
-                Long targetBno = row.get(boardImage.board.bno);
-                Integer ord = row.get(boardImage.ord);
-                BoardImageDTO imageDTO = BoardImageDTO.builder()
-                        .uuid(row.get(boardImage.uuid))
-                        .fileName(row.get(boardImage.fileName))
-                        .ord(ord == null ? 0 : ord)
-                        .build();
-                imageMap.computeIfAbsent(targetBno, k -> new ArrayList<>()).add(imageDTO);
-            }
+            dto.setBoardImages(imageDTOS);
+            return dto;
+        }).collect(Collectors.toList());
 
-            dtoList.forEach(dto ->
-                    dto.setBoardImages(imageMap.getOrDefault(dto.getBno(), new ArrayList<>())));
-        }
+        // 전체 개수: groupBy 없는 별도 count 쿼리 (deprecated 된 fetchCount() 대신)
+        Long totalCount = boardJPQLQuery.fetchCount();
 
-        // 3) 전체 개수
-        Long totalCount = from(board).where(where).select(board.count()).fetchOne();
-
-        return new PageImpl<>(dtoList, pageable, totalCount == null ? 0 : totalCount);
+        return new PageImpl<>(dtoList, pageable, totalCount);
     }
 }
