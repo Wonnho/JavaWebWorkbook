@@ -31,16 +31,12 @@ public class BoardServiceImpl implements BoardService {
         Long bno=boardRepository.save(board).getBno();
         return bno;
     }
-
     @Override
     public BoardDTO readOne(Long bno) {
-
-       Optional<Board> result=boardRepository.findById(bno);
-       Board board=result.orElseThrow();
-       BoardDTO boardDTO=modelMapper.map(board, BoardDTO.class);
-
-       return boardDTO;
-
+        Optional<Board> result=boardRepository.findByWithImages(bno);
+        Board board =result.orElseThrow();
+        BoardDTO boardDTO =entityToDTO(board);
+        return boardDTO;
     }
 
     @Override
@@ -48,6 +44,16 @@ public class BoardServiceImpl implements BoardService {
         Optional<Board> result= boardRepository.findById(boardDTO.getBno());
         Board board=result.orElseThrow();
         board.change(boardDTO.getTitle(),boardDTO.getContent());
+
+      board.clearImages();
+
+      if(boardDTO.getFileNames()!=null) {
+          for (String fileName: boardDTO.getFileNames()) {
+              String[] arr=fileName.split("_");
+              board.addImage(arr[0],arr[1]);
+          }
+      }
+
         boardRepository.save(board);
     }
 
@@ -105,6 +111,5 @@ public class BoardServiceImpl implements BoardService {
                 .total((int) result.getTotalElements())
                 .build();
     }
-
 
 }

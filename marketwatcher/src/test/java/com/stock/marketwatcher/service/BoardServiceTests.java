@@ -35,10 +35,9 @@ public class BoardServiceTests {
     @Test
     public void modifyTest() {
         BoardDTO   boardDTO=BoardDTO.builder()
-                .bno(2L)
-                .title("modify title...")
-                .content("test for modification on board")
-//                .writer("test builder not user2")
+                .bno(1724L)
+                .title("update title...")
+                .content("update 1724 content")
                 .build();
 
         boardService.modify(boardDTO);
@@ -78,5 +77,16 @@ public class BoardServiceTests {
         Long bno=boardService.register(boardDTO);
         log.info("bno: "+bno);
 
+    }
+
+    @Test
+    public void testReadAll() {
+        Long bno=1724L;
+        BoardDTO boardDTO=boardService.readOne(bno);
+        log.info(boardDTO);
+        for(String fileName: boardDTO.getFileNames()) {
+            log.info(fileName);
+
+        }
     }
 }
