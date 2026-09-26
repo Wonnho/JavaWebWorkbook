@@ -16,6 +16,8 @@
                 </div>
                 <div class="card-body">
                     <form th:action="@{/board/modify}" method="post" id="f1">
+                        <input th:each="fileName : ${dto.fileNames}"
+                               type="hidden" name="fileNames" th:value="${fileName}">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Bno</span>
                             <input type="text" class="form-control" th:value="${dto.bno}" name="bno" readonly>

@@ -41,6 +41,19 @@
             <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
         </div>
 
+        <div class="my-4" th:if="${dto.fileNames != null and !#lists.isEmpty(dto.fileNames)}">
+            <h5>Images</h5>
+            <div class="d-flex flex-wrap gap-3">
+                <a th:each="fileName : ${dto.fileNames}"
+                   th:href="@{/view/{fileName}(fileName=${fileName})}">
+                    <img class="img-thumbnail"
+                         style="max-width: 300px; max-height: 300px; object-fit: contain;"
+                         th:src="@{/view/{fileName}(fileName=${fileName})}"
+                         th:alt="${fileName}">
+                </a>
+            </div>
+        </div>
+
         <div class="my-4">
             <div class="float-end" th:with="link = ${pageRequestDTO.getLink()}">
                 <a th:href="|@{/board/list}?${link}|" class="text-decoration-none">
