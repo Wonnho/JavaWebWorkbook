@@ -17,9 +17,9 @@ public interface BoardService {
     void modify(BoardDTO boardDTO);
 
     void remove(Long bno);
-
     PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO);
 
+    PageResponseDTO<BoardListAllDTO> listWithAll(PageRequestDTO pageRequestDTO);
     PageResponseDTO listWithReplyCount(PageRequestDTO pageRequestDTO);
 
     PageResponseDTO<BoardListAllDTO> ListWithAll(PageRequestDTO pageRequestDTO);

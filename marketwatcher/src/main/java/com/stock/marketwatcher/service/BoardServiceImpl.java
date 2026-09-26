@@ -97,8 +97,12 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public PageResponseDTO<BoardListAllDTO> ListWithAll(PageRequestDTO pageRequestDTO)
-    {
+    public PageResponseDTO<BoardListAllDTO> ListWithAll(PageRequestDTO pageRequestDTO) {
+        return null;
+    }
+
+    @Override
+    public PageResponseDTO<BoardListAllDTO> listWithAll(PageRequestDTO pageRequestDTO) {
         String[] types = pageRequestDTO.getTypes();
         String keyword = pageRequestDTO.getKeyword();
         Pageable pageable = pageRequestDTO.getPageable("bno");

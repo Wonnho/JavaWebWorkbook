@@ -1,8 +1,6 @@
 package com.stock.marketwatcher.service;
 
-import com.stock.marketwatcher.dto.BoardDTO;
-import com.stock.marketwatcher.dto.PageRequestDTO;
-import com.stock.marketwatcher.dto.PageResponseDTO;
+import com.stock.marketwatcher.dto.*;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootTest
@@ -88,5 +87,34 @@ public class BoardServiceTests {
             log.info(fileName);
 
         }
+    }
+
+    @Test
+    public void removeAllTest() {
+        Long bno=61L;
+        boardService.remove(bno);
+    }
+
+    @Test
+    public void listWithAllTest() {
+        PageRequestDTO pageRequestDTO =PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .build();
+
+        PageResponseDTO<BoardListAllDTO> responseDTO =boardService.listWithAll(pageRequestDTO);
+                    List<BoardListAllDTO> dtoList=responseDTO.getDtoList();
+
+                    dtoList.forEach(boardListAllDTO -> {
+                        log.info(boardListAllDTO.getBno()+":"+boardListAllDTO.getTitle());
+                            if(boardListAllDTO.getBoardImages()!= null) {
+                            for(BoardImageDTO boardImage:boardListAllDTO.getBoardImages()) {
+                                log.info(boardImage);
+                            }
+                        };
+
+                        log.info("--------------------------------");
+                    });
+
     }
 }
