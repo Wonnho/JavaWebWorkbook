@@ -224,7 +224,28 @@ function showUploadFile({ uuid, fileName, link }) {
     removeFileToServer(uuid,FileName).then(data=>{
     targetDiv.remove()
     })
+
+    document.querySelector(".submitBtn").addEventListener("click",function(e) {
+    e.preventDefault()
+    e.stopPropagation()
+
+    const target=document.querySelector(".uploadHidden")
+    const uploadFiles=uploadResult.querySelectorAll("img")
+
+    let str=''
+
+    for (let k=0;k<uploadFiles.length;k++) {
+        const uploadFile=uploadFiles[k]
+        const imgLink=uploadFile.getAttribute("src")
+
+        str +=`<input type='hidden' name='fileNames' value="${imgLink}">`
+      }
+
+      target.innerHTML=str;
+        document.querySelector("form").submit();
+      },false);
 }
+
 
 </script>
 

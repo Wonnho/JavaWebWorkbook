@@ -1,9 +1,6 @@
 package com.stock.marketwatcher.controller;
 
-import com.stock.marketwatcher.dto.BoardDTO;
-import com.stock.marketwatcher.dto.BoardListReplyCountDTO;
-import com.stock.marketwatcher.dto.PageRequestDTO;
-import com.stock.marketwatcher.dto.PageResponseDTO;
+import com.stock.marketwatcher.dto.*;
 import com.stock.marketwatcher.service.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,17 +25,19 @@ public class BoardController {
     public void list(PageRequestDTO pageRequestDTO, Model model) {
 
    //    PageResponseDTO<BoardDTO> responseDTO=boardService.list(pageRequestDTO);
-    PageResponseDTO<BoardListReplyCountDTO> responseDTO=
-            boardService.listWithReplyCount(pageRequestDTO);
+    PageResponseDTO<BoardListAllDTO> responseDTO=
+            boardService.listWithAll(pageRequestDTO);
 
         log.info(responseDTO);
     model.addAttribute("responseDTO",responseDTO);
     }
 
     @PostMapping("/register")
-    public String register(@Valid BoardDTO boardDTO, BindingResult  bindingResult, RedirectAttributes redirectAttributes) {
+    public String register(@Valid BoardDTO boardDTO,
+                           BindingResult  bindingResult, RedirectAttributes redirectAttributes) {
 
         log.info("board POst register .....................");
+
     if(bindingResult.hasErrors()) {
         log.info("hasErrors.............");
         redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
