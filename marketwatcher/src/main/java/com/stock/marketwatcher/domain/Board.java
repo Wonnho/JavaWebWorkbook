@@ -42,11 +42,15 @@ public class Board extends BaseEntity{
     private Set<BoardImage> imageSet=new HashSet<>();
 
     public void addImage(String uuid,String fileName) {
+        addImage(uuid, fileName, imageSet.size());
+    }
+
+    public void addImage(String uuid, String fileName, int ord) {
         BoardImage  boardImage=BoardImage.builder()
                 .uuid(uuid)
                 .fileName(fileName)
                 .board(this)
-                .ord(imageSet.size())
+                .ord(ord)
                 .build();
         imageSet.add(boardImage);
     }
@@ -54,6 +58,17 @@ public class Board extends BaseEntity{
     public void clearImages() {
         imageSet.forEach(boardImage -> boardImage.changeBoard(null));
         this.imageSet.clear();
+    }
+
+    public void removeImagesNotIn(Set<String> uuids) {
+        imageSet.removeIf(boardImage -> {
+            if (uuids.contains(boardImage.getUuid())) {
+                return false;
+            }
+
+            boardImage.changeBoard(null);
+            return true;
+        });
     }
 
 }

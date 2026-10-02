@@ -32,4 +32,8 @@ public class BoardImage  implements Comparable<BoardImage> {
     public void changeBoard(Board board) {
         this.board=board;
     }
+
+    public void changeOrd(int ord) {
+        this.ord = ord;
+    }
 }

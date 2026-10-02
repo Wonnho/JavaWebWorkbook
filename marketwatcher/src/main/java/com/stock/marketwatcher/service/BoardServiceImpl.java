@@ -1,6 +1,7 @@
 package com.stock.marketwatcher.service;
 
 import com.stock.marketwatcher.domain.Board;
+import com.stock.marketwatcher.domain.BoardImage;
 import com.stock.marketwatcher.dto.*;
 import com.stock.marketwatcher.repository.BoardRepository;
 import jakarta.transaction.Transactional;
@@ -11,7 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -41,20 +44,36 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void modify(BoardDTO boardDTO) {
-        Optional<Board> result= boardRepository.findById(boardDTO.getBno());
+        Optional<Board> result= boardRepository.findByWithImages(boardDTO.getBno());
         Board board=result.orElseThrow();
         board.change(boardDTO.getTitle(),boardDTO.getContent());
 
-      board.clearImages();
+        Map<String, String> requestedImages = new LinkedHashMap<>();
+        if (boardDTO.getFileNames() != null) {
+            for (String fileName : boardDTO.getFileNames()) {
+                String[] arr = fileName.split("_", 2);
+                if (arr.length == 2) {
+                    requestedImages.put(arr[0], arr[1]);
+                }
+            }
+        }
 
-      if(boardDTO.getFileNames()!=null) {
-          for (String fileName: boardDTO.getFileNames()) {
-              String[] arr=fileName.split("_", 2);
-              board.addImage(arr[0],arr[1]);
-          }
-      }
+        Map<String, BoardImage> existingImages = board.getImageSet().stream()
+                .collect(Collectors.toMap(BoardImage::getUuid, boardImage -> boardImage));
 
-        boardRepository.save(board);
+        board.removeImagesNotIn(requestedImages.keySet());
+
+        int ord = 0;
+        for (Map.Entry<String, String> entry : requestedImages.entrySet()) {
+            BoardImage existingImage = existingImages.get(entry.getKey());
+
+            if (existingImage != null) {
+                existingImage.changeOrd(ord);
+            } else {
+                board.addImage(entry.getKey(), entry.getValue(), ord);
+            }
+            ord++;
+        }
     }
 
     @Override

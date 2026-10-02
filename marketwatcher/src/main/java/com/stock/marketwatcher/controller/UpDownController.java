@@ -53,7 +53,8 @@ public class UpDownController {
                     multipartFile.transferTo(savePath);
 
                     //이미지 파일의 종류라면
-                    if (Files.probeContentType(savePath).startsWith("image")) {
+                    String contentType = Files.probeContentType(savePath);
+                    if (contentType != null && contentType.startsWith("image")) {
 
                         image = true;
 
@@ -63,7 +64,7 @@ public class UpDownController {
                     }
 
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new IllegalStateException("Failed to save uploaded file: " + originalName, e);
                 }
 
                 list.add(UploadResultDTO.builder()
