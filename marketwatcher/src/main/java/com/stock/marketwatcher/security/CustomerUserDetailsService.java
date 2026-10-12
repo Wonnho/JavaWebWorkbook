@@ -1,0 +1,27 @@
+package com.stock.marketwatcher.security;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Log4j2
+@Service
+@RequiredArgsConstructor
+public class CustomerUserDetailsService implements UserDetailsService {
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+       log.info("LoadUserByUsername:" + username);
+
+       UserDetails userDetails= User.builder()
+               .username("user10")
+               .password("4321")
+               .authorities("ROLE_USER")
+               .build();
+        return userDetails;
+    }
+}
