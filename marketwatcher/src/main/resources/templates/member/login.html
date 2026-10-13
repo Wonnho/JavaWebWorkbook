@@ -20,8 +20,14 @@
             LOGIN Page
         </div>
         <div class="card-body">
+            <th:block th:if="${param.logout !=null}">
+                <h1> log out ....</h1>
+            </th:block>
 
-            <form id="registerForm" action="/member/login" method="post">
+            <form id="registerForm"
+                  th:action="@{/member/login}"
+                  method="post"
+                  th:if="${param.logout==null}">
 <!--                <input type="hidden"-->
 <!--                       th:name="${_csrf.parameterName}"-->
 <!--                       th:value="${_csrf.token}">-->
@@ -33,6 +39,13 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text">패스워드</span>
                     <input type="text" name="password" class="form-control" placeholder="PASSWORD">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input class="form-check-input" type="checkbox" name="remember-me">
+                    <label class="form-check-label">
+                        automatic Login
+                    </label>
                 </div>
 
                 <div class="my-4">

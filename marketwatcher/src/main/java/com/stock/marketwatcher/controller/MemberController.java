@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 
     @GetMapping("/login")
-    public void LoginGET(String error,String logout) {
+    public void LoginGET(String errorCode,String logout) {
         log.info("login get ......................");
-        log.info("Logout:" +  logout);
+        log.info("Logout: " +  logout);
+
+        if(logout !=null) {
+            log.info("user logout.....");
+        }
+//        return "member/login";
     }
 }
