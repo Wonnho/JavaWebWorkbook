@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/basic}">
 
@@ -47,7 +48,8 @@
                             <input type="text"
                                    name="writer"
                                    class="form-control"
-                                   placeholder="Writer">
+                                   placeholder="Writer"
+                            th:value="${#authentication.principal.username}" readonly>
 
                         </div>
 
@@ -134,10 +136,12 @@
 
     console.log("authentication:", auth);
     console.log("errors:", errors);
+
 <!--        const auth=[[${#authentication}]]-->
 <!--    -->
 <!--        const errors = [[${errors}]]-->
 <!--        console.log(errors)-->
+
         let errorMsg = ''
 
         if(errors){
@@ -227,7 +231,7 @@
         console.log(obj)
 
         const targetDiv=obj.closest(".card")
-        removeFileToServer(uuid,FileName).then(data=>{
+        removeFileToServer(uuid,fileName).then(data=>{
         targetDiv.remove()
         })
 

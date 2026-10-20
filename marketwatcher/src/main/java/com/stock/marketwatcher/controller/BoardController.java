@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,7 +35,9 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/list")
-    public void list(PageRequestDTO pageRequestDTO, Model model) {
+    public void list(PageRequestDTO pageRequestDTO, Model model, Authentication authentication) {
+
+        String username = authentication.getName();
 
    //    PageResponseDTO<BoardDTO> responseDTO=boardService.list(pageRequestDTO);
     PageResponseDTO<BoardListAllDTO> responseDTO=
@@ -65,6 +68,7 @@ public class BoardController {
     @GetMapping("register")
     public void registerGET(){};
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping({"/read","/modify"})
     public void read(@RequestParam("bno") Long bno, PageRequestDTO pageRequestDTO, Model model) {
       BoardDTO  boardDTO=boardService.readOne(bno);
@@ -72,6 +76,7 @@ public class BoardController {
       model.addAttribute("dto",boardDTO);
     }
 
+    @PreAuthorize("principal.username==#boardDTO.writer")
     @PostMapping("/modify")
     public String modify(PageRequestDTO pageRequestDTO,
                                  @Valid BoardDTO boardDTO,
@@ -101,6 +106,7 @@ public class BoardController {
 
         return "redirect:/board/read";
     }
+    @PreAuthorize("principal.username==#boardDTO.writer")
     @PostMapping("/remove")
     public String remove(BoardDTO boardDTO, RedirectAttributes redirectAttributes) {
 
