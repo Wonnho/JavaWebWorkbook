@@ -2,6 +2,9 @@ package com.stock.marketwatcher.domain;
 
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
 
 @Entity
 @Table(name="users")
