@@ -59,6 +59,8 @@ dependencies {
 	implementation 'net.coobird:thumbnailator:0.4.16'
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 
 
 } // <-- CRITICAL: Safely close the dependencies block here

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modify Member</title>
+</head>
+<body>
+<h1>Complete your social account</h1>
+
+<form th:action="@{/member/modify}" method="post">
+  <label>New password</label>
+  <input type="password" name="mpw">
+
+  <button type="submit">Save</button>
+</form>
+</body>
+</html>

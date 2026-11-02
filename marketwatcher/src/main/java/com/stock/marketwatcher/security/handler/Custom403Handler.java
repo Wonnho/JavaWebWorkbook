@@ -1,4 +1,4 @@
-package com.stock.marketwatcher.security;
+package com.stock.marketwatcher.security.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,5 +34,8 @@ public class Custom403Handler implements AccessDeniedHandler {
                     request.getContextPath()
                             + "/member/login?error=ACCESS_DENIED");
         }
+    }
+
+    public static class handler {
     }
 }

@@ -37,7 +37,9 @@ public class BoardController {
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model, Authentication authentication) {
 
-        String username = authentication.getName();
+//        String username = authentication.getName();
+        String username =
+                authentication != null ? authentication.getName() : null;
 
    //    PageResponseDTO<BoardDTO> responseDTO=boardService.list(pageRequestDTO);
     PageResponseDTO<BoardListAllDTO> responseDTO=

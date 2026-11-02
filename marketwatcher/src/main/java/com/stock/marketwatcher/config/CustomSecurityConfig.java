@@ -1,7 +1,8 @@
 package com.stock.marketwatcher.config;
 
-import com.stock.marketwatcher.security.Custom403Handler;
+import com.stock.marketwatcher.security.handler.Custom403Handler;
 import com.stock.marketwatcher.security.CustomUserDetailsService;
+import com.stock.marketwatcher.security.handler.CustomSocialLoginHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -28,11 +29,12 @@ public class CustomSecurityConfig {
 
     private final DataSource dataSource;
     private final CustomUserDetailsService customerUserDetailsService;
+    private final PasswordEncoder passwordEncoder;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
 
     @Bean
@@ -64,6 +66,12 @@ public class CustomSecurityConfig {
 //        );
 
 
+       // http.oauth2Login().LoginPage("/member/login");
+        http.oauth2Login(oauth2 -> oauth2
+                .loginPage("/member/login")
+                .successHandler(
+                        new CustomSocialLoginHandler(passwordEncoder)
+                ));;
 
         return http.build();
     }
