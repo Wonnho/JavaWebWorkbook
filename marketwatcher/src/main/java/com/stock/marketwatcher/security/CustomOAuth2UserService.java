@@ -74,6 +74,7 @@ public class CustomOAuth2UserService  extends DefaultOAuth2UserService {
                     .social(true)
                     .build();
             member.addRole(MemberRole.USER);
+
             memberRepository.save(member);
 
             // compose and return MemberSecurityDTO

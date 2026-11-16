@@ -6,6 +6,7 @@ import com.stock.marketwatcher.security.handler.CustomSocialLoginHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -31,6 +32,9 @@ public class CustomSecurityConfig {
     private final CustomUserDetailsService customerUserDetailsService;
     private final PasswordEncoder passwordEncoder;
 
+    @Value("${app.security.remember-me.key}")
+    private String rememberMeKey;
+
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
@@ -45,10 +49,10 @@ public class CustomSecurityConfig {
 
         http.formLogin(form->form.loginPage("/member/login"));
 
-        http.csrf(csrf -> csrf.disable());
+//        http.csrf(csrf -> csrf.disable());
 
         http.rememberMe(remember->remember
-                .key("12345678")
+                .key(rememberMeKey)
                 .tokenRepository(persistentTokenRepository())
                 .userDetailsService(customerUserDetailsService)
                 .tokenValiditySeconds(60*60*24*30)
